@@ -1,4 +1,5 @@
 import {createBrowserRouter, RouterProvider, NavLink, Outlet} from "react-router";
+import React, { useState } from "react";
 import Home from "./components/Home.tsx";
 import About from "./components/About.tsx";
 import Contact from "./components/Contact.tsx";
@@ -12,6 +13,9 @@ const routes = [
 
 const Navigation = () => {
   const { theme } = useAppContext();
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
   
   const navClass = theme.mode === 'dark' ? 'navbar-dark bg-dark' : 'navbar-light bg-light';
   const borderColor = `border-bottom border-3 border-${theme.primaryColor === 'orange' ? 'warning' : 
@@ -25,31 +29,39 @@ const Navigation = () => {
     theme.primaryColor === 'softblue' ? 'text-info' : 'text-primary';
 
   return (
-    <nav className={`navbar mb-4 ${navClass} ${borderColor}`}>
+    <nav className={`navbar navbar-expand-lg mb-4 ${navClass} ${borderColor}`}>
       <div className="container-fluid">
         <a className={`navbar-brand fw-bold ${brandColor}`} href="#">
           🏠 React Home Work 7 App
         </a>
-        <div className="d-flex">
-          <ul className="navbar-nav d-flex flex-row">
+        
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={handleNavCollapse}
+          aria-controls="navbarNav"
+          aria-expanded={!isNavCollapsed}
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className={`collapse navbar-collapse ${!isNavCollapsed ? 'show' : ''}`} id="navbarNav">
+          <ul className="navbar-nav ms-auto">
             {routes.map((route) => (
-              <li className="nav-item me-2 me-md-3" key={route.path}>
+              <li className="nav-item" key={route.path}>
                 <NavLink 
                   to={route.path}
                   className={({ isActive }) =>
                     isActive 
-                      ? `nav-link fw-bold ${brandColor} px-2`
-                      : "nav-link px-2"
+                      ? `nav-link fw-bold ${brandColor}`
+                      : "nav-link"
                   }
-                  style={{ textDecoration: 'none', fontSize: '0.9rem' }}
+                  style={{ textDecoration: 'none' }}
                   end={route.path === "/"}
+                  onClick={() => setIsNavCollapsed(true)}
                 >
-                  <span className="d-inline d-md-none">
-                    {route.name === "Home" ? "🏠" : route.name === "About" ? "📖" : "📞"}
-                  </span>
-                  <span className="d-none d-md-inline">
-                    {route.name === "Home" ? "🏠 " : route.name === "About" ? "📖 " : "📞 "}{route.name}
-                  </span>
+                  {route.name === "Home" ? "🏠 " : route.name === "About" ? "📖 " : "📞 "}{route.name}
                 </NavLink>
               </li>
             ))}
