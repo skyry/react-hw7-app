@@ -107,7 +107,7 @@ const Contact: React.FC = () => {
               <div className="mb-3">
                 <h6 className="text-muted">📞 Телефон:</h6>
                 <p className="mb-0">
-                  <a href="" className={headerColor.replace('text-', 'text-decoration-none text-')}>+380441234567</a>
+                  <a href="tel:+380441234567" className={headerColor.replace('text-', 'text-decoration-none text-')}>+380441234567</a>
                 </p>
               </div>
               
