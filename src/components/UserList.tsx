@@ -32,7 +32,7 @@ const UserList: React.FC = () => {
           <button 
             className="btn btn-outline-danger btn-sm"
             onClick={handleClearAllUsers}
-            title="Видалити всіх користувачів">🗑️ Очистити всіх користувачів
+            title="Видалити всіх користувачів">🗑️ Видалити всіх користувачів
           </button>
         )}
       </div>

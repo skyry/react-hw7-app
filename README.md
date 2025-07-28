@@ -30,12 +30,15 @@ react-hw7-app/
 ├── public/
 │   └── vite.svg
 ├── src/
-│   ├── App.tsx — головний компонент з маршрутизацією та Layout
+│   ├── App.tsx — головний компонент
 │   ├── main.tsx — точка входу з підключенням Bootstrap
 │   ├── index.css — глобальні стилі
-│   ├── context/
-│   │   └── AppContext.tsx — Context API з типами та провайдером
+│   ├── router/
+│   │   └── index.tsx — конфігурація React Router
+│   │
 │   └── components/
+│       ├── Layout.tsx — основний макет додатку
+│       ├── Navigation.tsx — респонсивна навігація
 │       ├── Home.tsx — головна сторінка (1-й рівень)
 │       ├── About.tsx — сторінка "Про нас"
 │       ├── Contact.tsx — контактна сторінка з формою
@@ -44,23 +47,10 @@ react-hw7-app/
 │       ├── UserActions.tsx — дії користувача (4-й рівень)
 │       ├── AddUserForm.tsx — форма додавання (3-й рівень)
 │       └── ThemeControls.tsx — налаштування теми (2-й рівень)
-│
-├── index.html
 ├── package.json
 ├── vite.config.js
 ├── eslint.config.js
 └── README.md
-
-## Архітектура Context API
-```
-AppContext
-├── users: User[] — масив користувачів
-├── theme: Theme — налаштування теми
-├── addUser(user) — додавання користувача
-├── deleteUser(id) — видалення користувача
-├── toggleTheme() — перемикання теми
-└── updateThemeColor(color) — зміна кольору
-```
 
 ## Рівні вкладеності компонентів
 ```
